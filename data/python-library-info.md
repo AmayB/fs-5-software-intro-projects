@@ -37,7 +37,7 @@ df = dfa.vstack(dfb)
 df.columns = ["altColA", "altColB", . . .]
 
 # Printing your paruqet
-print(path)
+print(dfa)
 
 ```
 
