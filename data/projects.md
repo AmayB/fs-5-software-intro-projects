@@ -15,7 +15,7 @@ There are three different brake related signals. ETC_STATUS_BRAKELIGHT is a simp
 
 ## Onboarding Project Steps
 1. Using parquet logic, forward fill and print all the values in a table format from the file. Provide a screenshot from your terminal display of what got printed.
-2. a) Using matplotlib, graph the speed of the car(in MPH) vs time. Refer to the [data_columns.csv](https://github.com/formulaslug/fs-5-software-intro-projects/blob/main/data/data_columns.csv) to know which column means what. Use that graph to find the speed of the car at 10s. To find the speed of the car, use 'SME_TRQSPD_Speed.' It is measured in RPM which you will need to convert. Please refer to the physics section below for the explanation. 
+2. Using matplotlib, graph the speed of the car(in MPH) vs time. Refer to the [data_columns.csv](https://github.com/formulaslug/fs-5-software-intro-projects/blob/main/data/data_columns.csv) to know which column means what. Use that graph to find the speed of the car at 10s. To find the speed of the car, use 'SME_TRQSPD_Speed.' It is measured in RPM which you will need to convert. Please refer to the physics section below for the explanation. 
 3. Give a time frame for when the car is accelerating, braking, and coasting. Explain how you found these values out. Then plot those states over time on three different graphs
 4. Find out how many laps the car drove as well as the start and end time for each lap. The car has a GPS system you can utilize to visualize this. Provide a screenshot of your method along with an explanation of how you went about finding this.
 5. Using the lap times found from part 4, determine the max speed, max acceleration, time spent accelerating, and time spent coasting. 
