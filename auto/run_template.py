@@ -12,4 +12,26 @@ STEPS = 550
  
 car = make_car(desired_v=20.0, dt=0.1)
 
-#WRITE CODE HERE
+# Set up lists to hold the history of velocity, error, and time for plotting
+velocity_history = []
+error_history = []
+time_history = []
+
+# Run the simulation for a set number of steps
+for _ in range(STEPS):
+
+    #calculate the desired acceleration and error
+    desired_acceleration, error = calculate_desired_acceleration(
+        car, K_P, K_I, K_D
+    )
+
+    # convert the desired acceleration to throttle percentage
+    throttle_percentage = acceleration_to_throttle_percentage(
+        desired_acceleration
+    )
+
+    # update velocity, position, and time based on throttle percentage
+    update(car, throttle_percentage)
+    velocity_history.append(car["v"])
+    error_history.append(error)
+    time_history.append(car["t"])
