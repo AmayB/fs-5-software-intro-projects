@@ -44,14 +44,30 @@ def calculate_desired_acceleration(car: dict, K_P: float, K_I: float = 0.0, K_D:
         #input: car["v"], car["desired_v"] (floats)
         #output: desired acceleration and error tuple(float, float)
 
-        # Difference between velocity we want vs. current velocity
-        # Uses error and multiples it by K_P to get the acceleration we want
-        # Returns both values
+        # calculates the  acceleration based on the car's current velocity and desired velocity
         error = car["desired_v"] - car["v"]
+
+        # current error multiplied by time step to get integral of error over time
         car["net_integral"] += error * car["dt"]
+
+        # calculate the proportional, integral, and derivative terms
         proportional = K_P * error
+
         integral = K_I * car["net_integral"]
-        desired_acceleration = proportional + integral
+
+        if car["error_prev"] is None:
+            derivative = 0.0
+        else:
+            derivative = (error - car["error_prev"]) / car["dt"]
+
+        derivative_term = K_D * derivative
+
+        # update the previous error for the next iteration
+        car["error_prev"] = error
+        
+        desired_acceleration = proportional + integral + derivative_term
+        
+        # return the desired acceleration and error
         return desired_acceleration, error
 
 
