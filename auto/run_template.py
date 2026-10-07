@@ -31,7 +31,7 @@ for _ in range(STEPS):
     )
 
     # update velocity, position, and time based on throttle percentage
-    update(car, throttle_percentage)
+    update(car, throttle_percentage, friction=2.0)
     velocity_history.append(car["v"])
     error_history.append(error)
     time_history.append(car["t"])
