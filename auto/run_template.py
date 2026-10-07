@@ -10,7 +10,7 @@ K_D = 0.1
  
 STEPS = 550
  
-car = make_car(desired_v=30.0, dt=0.1)
+car = make_car(desired_v=20.0, dt=0.1)
 
 # Set up lists to hold the history of velocity, error, and time for plotting
 velocity_history = []
