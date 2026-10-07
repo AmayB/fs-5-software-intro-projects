@@ -35,3 +35,25 @@ for _ in range(STEPS):
     velocity_history.append(car["v"])
     error_history.append(error)
     time_history.append(car["t"])
+
+# plot the results
+plt.figure()
+plt.plot(time_history, velocity_history)
+
+plt.title("Velocity vs Time")
+plt.xlabel("Time (s)")
+plt.ylabel("Velocity (m/s)")
+
+# display the velocity graph
+plt.show()
+
+# create a second graph showing the velocity error over time
+plt.figure()
+plt.plot(time_history, error_history)
+
+plt.title("Velocity Error vs Time")
+plt.xlabel("Time (s)")
+plt.ylabel("Velocity Error (m/s)")
+
+# display the error graph
+plt.show()
