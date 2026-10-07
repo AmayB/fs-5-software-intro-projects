@@ -19,6 +19,9 @@ time_history = []
 
 # Run the simulation for a set number of steps
 for _ in range(STEPS):
+    # if the car velocity is close to the desired velocity, break the loop
+    if abs(car["desired_v"] - car["v"]) < 0.01:
+        break
 
     #calculate the desired acceleration and error
     desired_acceleration, error = calculate_desired_acceleration(

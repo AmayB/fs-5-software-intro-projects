@@ -50,6 +50,9 @@ def calculate_desired_acceleration(car: dict, K_P: float, K_I: float = 0.0, K_D:
         # current error multiplied by time step to get integral of error over time
         car["net_integral"] += error * car["dt"]
 
+        # stop interval from getting too big or small
+        car["net_integral"] = np.clip(car["net_integral"], -100, 100)
+
         # calculate the proportional, integral, and derivative terms
         proportional = K_P * error
 
@@ -66,7 +69,7 @@ def calculate_desired_acceleration(car: dict, K_P: float, K_I: float = 0.0, K_D:
         car["error_prev"] = error
         
         desired_acceleration = proportional + integral + derivative_term
-        
+
         # return the desired acceleration and error
         return desired_acceleration, error
 
