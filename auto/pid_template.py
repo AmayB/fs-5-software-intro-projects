@@ -48,11 +48,18 @@ def calculate_desired_acceleration(car: dict, K_P: float, K_I: float = 0.0, K_D:
         # Uses error and multiples it by K_P to get the acceleration we want
         # Returns both values
         error = car["desired_v"] - car["v"]
-        desired_acceleration = K_P * error
+        car["net_integral"] += error * car["dt"]
+        proportional = K_P * error
+        integral = K_I * car["net_integral"]
+        desired_acceleration = proportional + integral
         return desired_acceleration, error
 
 
 def acceleration_to_throttle_percentage(acceleration_desired: float, mass: float = 1000, max_throttle_force: float = 5000) -> float:
         #input: desired_acceleration(float)
         #output: throttle percentage (float, -1 to 1)
-        pass # delete this line and write your code to convert desired acceleration to throttle here
+
+        # Converts the max acceleration to throttle percentage
+        max_acceleration = max_throttle_force / mass
+        throttle_percentage = acceleration_desired / max_acceleration
+        return np.clip(throttle_percentage, -1, 1)
